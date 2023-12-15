@@ -227,7 +227,7 @@
 
   async function verifyTokenAndFetchBalance(token) {
     try {
-      const response = await fetch('/verify-token', {
+      const response = await fetch('https://brook-delicate-marmoset.glitch.me//verify-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
