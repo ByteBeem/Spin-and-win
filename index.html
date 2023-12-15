@@ -207,6 +207,7 @@
   }
 
   var token = getParameterByName('token');
+  localStorage.setItem("yourTokenKey", token);
 
   if (token) {
     // Show loading overlay
