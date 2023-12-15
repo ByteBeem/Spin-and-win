@@ -167,10 +167,11 @@ trigger.addEventListener("click", () => {
 });
 
 socket.on("winTrigger", (winAmount) => {
-   balance += winAmount;
-    const dynamicBalanceElement = document.getElementById('dynamic-balance');
+  balance += winAmount.amount; 
+  const dynamicBalanceElement = document.getElementById('dynamic-balance');
   dynamicBalanceElement.textContent = balance;
 });
+
 
 
 socket.on("rotationValue", (receivedRotation) => {
