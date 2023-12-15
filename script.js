@@ -142,6 +142,9 @@ const socket = io('https://brook-delicate-marmoset.glitch.me/');
 
 trigger.addEventListener("click", () => {
   if (reaper.dataset.reaction !== "resting") {
+    balance-=10;
+    const dynamicBalanceElement = document.getElementById('dynamic-balance');
+    dynamicBalanceElement.textContent = balance;
     reaper.dataset.reaction = "resting";
   }
 
