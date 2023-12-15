@@ -142,15 +142,26 @@ const socket = io('https://brook-delicate-marmoset.glitch.me/');
 
 trigger.addEventListener("click", () => {
   if (reaper.dataset.reaction !== "resting") {
-    balance-=10;
+    balance -= 10;
     const dynamicBalanceElement = document.getElementById('dynamic-balance');
     dynamicBalanceElement.textContent = balance;
     reaper.dataset.reaction = "resting";
   }
 
   trigger.disabled = true;
-  socket.emit("requestRotationValue");
+
+  
+  const storedToken = localStorage.getItem('yourTokenKey');
+
+  
+  if (storedToken) {
+    socket.emit("requestRotationValue", storedToken);
+  } else {
+    console.error('Token not found in local storage');
+    alert("No token found go and login again!")
+  }
 });
+
 
 
 socket.on("rotationValue", (receivedRotation) => {
