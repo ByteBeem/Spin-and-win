@@ -142,9 +142,7 @@ const socket = io('https://brook-delicate-marmoset.glitch.me/');
 
 trigger.addEventListener("click", () => {
   if (reaper.dataset.reaction !== "resting") {
-    balance -= 10;
-    const dynamicBalanceElement = document.getElementById('dynamic-balance');
-    dynamicBalanceElement.textContent = balance;
+
     reaper.dataset.reaction = "resting";
   }
 
@@ -152,7 +150,12 @@ trigger.addEventListener("click", () => {
 
   
   const storedToken = localStorage.getItem('yourTokenKey');
-
+  if(balance < 10){
+    alert("Insufficient balance");
+  } else{
+    balance -= 10;
+    const dynamicBalanceElement = document.getElementById('dynamic-balance');
+    dynamicBalanceElement.textContent = balance;
   
   if (storedToken) {
     socket.emit("requestRotationValue", storedToken);
@@ -160,8 +163,14 @@ trigger.addEventListener("click", () => {
     console.error('Token not found in local storage');
     alert("No token found go and login again!")
   }
+  }
 });
 
+socket.on("winTrigger", (winAmount) => {
+   balance += winAmount;
+    const dynamicBalanceElement = document.getElementById('dynamic-balance');
+  dynamicBalanceElement.textContent = balance;
+});
 
 
 socket.on("rotationValue", (receivedRotation) => {
