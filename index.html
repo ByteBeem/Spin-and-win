@@ -176,6 +176,7 @@
   <button class="btn-spin">Spin the wheel</button>
 </div>
 <script>
+  let balance = 0;
   function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -238,7 +239,7 @@
       const data = await response.json();
 
       if (response.ok) {
-        // Update UI with user balance
+         balance=data.userBalance;
         updateBalanceUI(data.userBalance);
       } else {
         console.error('Error verifying token:', data.error);
