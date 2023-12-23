@@ -138,7 +138,7 @@ const selectPrize = () => {
   reaper.dataset.reaction = prizeNodes[selected].dataset.reaction;
 };
 
-const socket = io('https://brook-delicate-marmoset.glitch.me/');
+const socket = io('https://spinz-wheel-server-fad3c875d012.herokuapp.com/');
 
 trigger.addEventListener("click", () => {
   if (reaper.dataset.reaction !== "resting") {
